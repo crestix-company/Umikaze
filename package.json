@@ -1,1 +1,1 @@
-{"name":"umikaze-garden-cafe","version":"1.0.0","private":true,"type":"module","scripts":{"build":"node scripts/build.mjs","dev":"python3 -m http.server 4202 --bind 127.0.0.1 --directory dist","verify":"node scripts/verify.mjs"}}
+{"name":"umikaze-garden-cafe","version":"1.0.0","private":true,"type":"module","scripts":{"build":"node scripts/build.mjs","dev":"python3 -m http.server 4202 --bind 127.0.0.1 --directory dist","verify":"node scripts/verify.mjs","test":"node scripts/test-motion.mjs"}}
