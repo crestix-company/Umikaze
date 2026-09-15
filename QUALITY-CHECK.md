@@ -28,3 +28,12 @@ No reservation sent, no Instagram post/reaction made, no existing domain modifie
 - `npm test`: preference changes, data saver, explicit play, paused-state persistence, background/offscreen pause/resume, blocked autoplay, failed-source poster, and pages without video. These exceptional cases are exercised in a DOM-behavior harness without modifying the user's operating-system settings.
 - `node scripts/verify.mjs http://127.0.0.1:4202/`: five HTML documents, 111 local references, 17 media assets, all styles and scripts; actual served bytes match the local output. Video-size budgets and playback attributes pass. `git diff --check` passes.
 - Scope: local preview only. No commit, remote push, or hosted-site deployment performed for this motion request.
+
+## GitHub Pages release correction — 2026-09-15
+
+- Cause confirmed through the Pages API: legacy publishing selected `main:/`, where no site `index.html` exists. The resulting public page rendered README content.
+- Changed the repository's Pages source to GitHub Actions. The workflow builds and validates the site, then uploads only `dist/`, including both optimized hero videos.
+- Preserved all four pages, their content, styling, images, and motion behavior. Existing Sites configuration and its source remote remain unchanged.
+- Pre-publication checks passed: production build, motion behavior tests, 111 local references, 17 media assets, video-size budgets, and identical served bytes for every page/media/style/script at the exact `/Umikaze/` path prefix. Default root hosting also passes.
+- The 404 home link now uses the deployment base path. Tested project-root return, project-relative assets, nested links, and rejection of links outside that base path.
+- Publication has a required post-deployment check of the exact public root URL, all five HTML files, every media asset, all styles, and JavaScript against the built bytes. MP4 response types are checked too. The workflow's terminal result records live verification separately from a successful build or source push.

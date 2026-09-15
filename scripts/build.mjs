@@ -1,4 +1,5 @@
 import {writeFileSync,mkdirSync} from 'node:fs';
+import {siteBasePath} from './site-path.mjs';
 const IG='https://www.instagram.com/umikaze_mametenchotto/';
 const LINE='https://line.me/ti/p/oHE2skCsS';
 const MAP='https://goo.gl/maps/Ng7ZphFNs4h2p9de8';
@@ -32,5 +33,5 @@ pages.access={title:'営業時間・アクセス｜Umikaze-海風',description:'
 const favicon="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23256b85'/%3E%3Cpath d='M12 28Q22 18 32 28T52 28M12 41Q22 31 32 41T52 41' fill='none' stroke='white' stroke-width='4'/%3E%3C/svg%3E";
 mkdirSync('dist',{recursive:true});
 for(const [key,p] of Object.entries(pages)){writeFileSync(`dist/${key}.html`,`<!doctype html>\n<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fcfbf7"><title>${p.title}</title><meta name="description" content="${p.description}"><meta property="og:title" content="${p.title}"><meta property="og:description" content="${p.description}"><meta property="og:type" content="website"><meta property="og:locale" content="ja_JP"><link rel="icon" type="image/svg+xml" href="${favicon}"><link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/layout.css"><link rel="stylesheet" href="assets/motion.css"><script src="assets/site.js" defer></script></head><body id="top">${header(key)}<main id="main">${p.body}</main>${footer()}</body></html>\n`)}
-writeFileSync('dist/404.html',`<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ページが見つかりません｜Umikaze-海風</title><body style="font-family:sans-serif;background:#fcfbf7;color:#173e50;padding:12vh 10%;line-height:2"><h1>ページが見つかりませんでした。</h1><p>お探しのページは移動した可能性があります。</p><a href="/" style="color:inherit">海風のホームへ戻る →</a></body></html>`);
+writeFileSync('dist/404.html',`<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ページが見つかりません｜Umikaze-海風</title><body style="font-family:sans-serif;background:#fcfbf7;color:#173e50;padding:12vh 10%;line-height:2"><h1>ページが見つかりませんでした。</h1><p>お探しのページは移動した可能性があります。</p><a href="${siteBasePath}" style="color:inherit">海風のホームへ戻る →</a></body></html>`);
 console.log('Built 4 pages and a 404 page.');
