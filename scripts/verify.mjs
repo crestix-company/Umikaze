@@ -7,6 +7,14 @@ for(const file of files){const html=readFileSync(resolve(root,file),'utf8');asse
 const access=readFileSync(resolve(root,'access.html'),'utf8');for(const fact of ['070-2218-6869','石橋1563-2','定休日：火曜日','10月〜6月','7月・8月・9月','6:00〜9:00','17:00〜21:00','11:00〜19:30','11:00〜21:00','水・木・日','月・金・土','縦列駐車'])assert(access.includes(fact),`Access fact missing: ${fact}`);
 const guide=readFileSync(resolve(root,'guide.html'),'utf8');for(const fact of ['狂犬病','混合ワクチン','動物病院','WanPass','https://wanpass.me/','大型犬','リード'])assert(guide.includes(fact),`Dog guide missing: ${fact}`);
 const home=readFileSync(resolve(root,'index.html'),'utf8');
+for(const file of ['index.html','menu.html','guide.html','access.html']){
+  const html=readFileSync(resolve(root,file),'utf8');
+  assert(html.includes('雨の日は臨時休業となります。'),`${file}: rain closure notice missing`);
+  assert(!/雨の日はテイクアウトで|テイクアウトのみ|ハンドメイドのお店は営業しています/.test(html),`${file}: outdated rainy-day policy`);
+}
+for(const file of ['menu.html','guide.html']){
+  assert(readFileSync(resolve(root,file),'utf8').includes('テイクアウトの営業も行っておりません。'),`${file}: rain takeout suspension missing`);
+}
 const video=home.match(/<video\b[^>]*>/)?.[0];
 assert(video&&['autoplay','muted','loop','playsinline','preload="none"'].every(attr=>video.includes(attr)),'Video playback and loading attributes');
 for(const [,path] of video.matchAll(/(?:poster|data-desktop-src|data-mobile-src)="([^"]+)"/g)){

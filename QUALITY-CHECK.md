@@ -37,3 +37,12 @@ No reservation sent, no Instagram post/reaction made, no existing domain modifie
 - Pre-publication checks passed: production build, motion behavior tests, 111 local references, 17 media assets, video-size budgets, and identical served bytes for every page/media/style/script at the exact `/Umikaze/` path prefix. Default root hosting also passes.
 - The 404 home link now uses the deployment base path. Tested project-root return, project-relative assets, nested links, and rejection of links outside that base path.
 - Publication has a required post-deployment check of the exact public root URL, all five HTML files, every media asset, all styles, and JavaScript against the built bytes. MP4 response types are checked too. The workflow's terminal result records live verification separately from a successful build or source push.
+
+## Rainy-day notice correction — 2026-09-15
+
+- Per the user's current instruction, rainy days mean temporary closure, including takeout. Removed the prior rain-only takeout and handmade-shop-open statements.
+- Updated the homepage notice, menu notice, guide FAQ, and access hours notice. Other hours, contact links, photos, layout, and video remain unchanged.
+- Added regression checks requiring the closure notice on all four content pages, the takeout suspension on menu/guide, and no obsolete rainy-day policy.
+- Passed root and `/Umikaze/` builds, motion tests, static verification, and exact served-byte verification at the production path prefix: five HTML files, 111 local references, and 17 media assets.
+- Actual browser checks: desktop FAQ opened successfully; 390px mobile FAQ, menu notice, and access hours were visually inspected for readable, unclipped text.
+- The user authorized commit, push, and publication. The existing GitHub Pages workflow and its mandatory live verification are retained; the separate Sites copy is outside this release.
