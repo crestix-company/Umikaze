@@ -13,7 +13,18 @@
 
 CSS、JavaScript、軽量化済み画像は `dist/assets/` で管理しています。写真の原本、制作資料、認証情報は配信に含めません。
 
-Cloudflare Pages等の静的ホスティングでは、ビルド `npm run build`、公開ディレクトリ `dist` を指定します。リポジトリのルートそのものはWebサイトではありません。
+## Cloudflare Pages
+
+Cloudflareの既存プロジェクト `umikaze` は `crestix-company/Umikaze` の `main` と連携しています。`main` へプッシュすると自動的にビルド・公開されます。
+
+- ビルドコマンド: `npm run build`
+- 公開ディレクトリ: `dist`（`wrangler.json` の `pages_build_output_dir` で固定）
+- ルートディレクトリ: リポジトリ直下
+- 公開先: https://umikaze-f3u.pages.dev/
+
+`out` は生成しません。Cloudflareはリポジトリ内の `wrangler.json` を設定の正として使用します。Workers用のデプロイコマンドやAPIキーは不要です。`npm run build` の後に動作テストとページ・画像・動画・リンク検証が実行され、失敗した場合は公開を止めます。
+
+公開後の検証: `node scripts/verify.mjs https://umikaze-f3u.pages.dev/`。公開完了はCloudflareの結果と実際のURLで確認してください。リポジトリのルートそのものはWebサイトではありません。
 
 ## GitHub Pages
 

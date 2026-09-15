@@ -46,3 +46,12 @@ No reservation sent, no Instagram post/reaction made, no existing domain modifie
 - Passed root and `/Umikaze/` builds, motion tests, static verification, and exact served-byte verification at the production path prefix: five HTML files, 111 local references, and 17 media assets.
 - Actual browser checks: desktop FAQ opened successfully; 390px mobile FAQ, menu notice, and access hours were visually inspected for readable, unclipped text.
 - The user authorized commit, push, and publication. The existing GitHub Pages workflow and its mandatory live verification are retained; the separate Sites copy is outside this release.
+
+## Cloudflare Pages output repair — 2026-09-15
+
+- The user's Cloudflare build log for commit `26e1a6a` confirms `npm run build` succeeded, then asset validation failed because the dashboard selected the nonexistent `out` directory. The existing Pages project is `umikaze`, linked to `crestix-company/Umikaze` on `main`; its public hostname is `umikaze-f3u.pages.dev`.
+- Added a Pages-specific `wrangler.json` declaring `pages_build_output_dir: ./dist`, so Git-integrated builds read the correct output from version control. No Worker entrypoint, credentials, new hosting project, or DNS changes are involved.
+- Added a standard npm `postbuild` hook to run motion and content/resource verification before automatic publication. Regression assertions ensure the Pages project and output directory remain correct.
+- Both root hosting and the existing `/Umikaze/` GitHub Pages build pass. Website content, photos, video, and styling are unchanged.
+- Wrangler 4.131.2 loaded the configuration without a directory argument and served the site locally. Verification of five HTML documents, 111 local references, 17 media assets, and all styles/scripts matched the built bytes at `http://127.0.0.1:4206/`.
+- Release acceptance requires the new commit's Cloudflare Pages check to succeed and verification at the existing public hostname, not only success on GitHub Pages or a new preview URL.
